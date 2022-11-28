@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,12 +16,30 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: Text("data"),
-          onPressed: (){
-           getdataPokemon();
-          },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(14.0),
+          child:Column(
+            children: [
+              Text("Pokedex",
+              style: TextStyle(
+                fontSize: 34.0,
+                fontWeight: FontWeight.bold
+                ),
+              ),
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount:2,
+                children: [
+                  Container(
+                    color: Colors.red,
+                  ),
+                ],
+                )
+            ],
+          ),
+          ),
         ),
       ),
     );
