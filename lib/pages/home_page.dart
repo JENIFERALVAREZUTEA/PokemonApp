@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   initState() {
     super.initState();
+    getdataPokemon();
   }
 
   getdataPokemon() async {
@@ -36,13 +37,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    getdataPokemon();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(14.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 12.0,
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage> {
                           (e) => ItemPokemonWidget(
                             name: e["name"],
                             image: e["img"],
+                            types: List<String>.from(e["type"].map((item)=>item)),
                             ),
                             )
                             .toList()
