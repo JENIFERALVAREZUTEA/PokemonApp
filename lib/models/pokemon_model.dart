@@ -1,14 +1,14 @@
-class Pokemon{
+class PokemonModel{
   String name;
   String img;
   List < String> type;
-  Pokemon({
+  PokemonModel({
     required this.name,
     required this.img,
     required this.type,
   });
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
+  factory PokemonModel.fromJson(Map<String, dynamic> json) => PokemonModel(
     name: json["name"], 
     img: json["img"], 
     type: List<String>.from(json["type"].map((e)=>e)),
