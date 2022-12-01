@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ItemTypeWidget extends StatelessWidget {
 
 String text;
+
 ItemTypeWidget({required this.text,});
 
 
