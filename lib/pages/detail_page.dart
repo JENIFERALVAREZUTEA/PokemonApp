@@ -1,23 +1,26 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/models/pokemon_model.dart';
+import 'package:pokemon_app/ui/general/colors.dart';
 import 'package:pokemon_app/ui/widgets/item_data_widget.dart';
 import 'package:pokemon_app/ui/widgets/item_type_widget.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  PokemonModel pokemon;
+  DetailPage({
+    required this.pokemon,
+  });
 
   @override
   Widget build(BuildContext context) {
-
-  double height = MediaQuery.of(context).size.height;
-
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color(0xff49D0B0),
+      backgroundColor: colorsPokemon[pokemon.type.first],
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xff49D0B0),
+        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: () {},
@@ -34,8 +37,8 @@ class DetailPage extends StatelessWidget {
             right: -30,
             child: Image.asset(
               'assets/images/pokeball.png',
-            height: 200,
-            color: Colors.white.withOpacity(0.2),
+              height: 200,
+              color: Colors.white.withOpacity(0.2),
             ),
           ),
           Padding(
@@ -47,7 +50,7 @@ class DetailPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Bulbasur",
+                      pokemon.name,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 36.0,
@@ -56,14 +59,9 @@ class DetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 6.0),
                     Row(
-                      children: [
-                        ItemTypeWidget(
-                          text: "Grass",
-                        ),
-                        ItemTypeWidget(
-                          text: "Poison",
-                        ),
-                      ],
+                      children: pokemon.type
+                          .map((e) => ItemTypeWidget(text: e))
+                          .toList(),
                     )
                   ],
                 ),
@@ -112,7 +110,7 @@ class DetailPage extends StatelessWidget {
                             ),
                             ItemDataWidget(
                               title: "Height",
-                              data: "1.5 m",
+                              data: pokemon.height,
                             ),
                             ItemDataWidget(
                               title: "Weight",
@@ -124,13 +122,13 @@ class DetailPage extends StatelessWidget {
 
                       //imagen del pokemon
                       Positioned.fill(
-                        top: -90.0,
+                          top: -90.0,
                           child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Image.network(
-                          "http://www.serebii.net/pokemongo/pokemon/001.png",
-                        ),
-                      )),
+                            alignment: Alignment.topCenter,
+                            child: Image.network(
+                              "http://www.serebii.net/pokemongo/pokemon/001.png",
+                            ),
+                          )),
                     ],
                   ),
                 ),
